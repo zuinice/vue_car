@@ -1,6 +1,13 @@
+/*
+ * @Author: your name
+ * @Date: 2021-08-24 10:08:55
+ * @LastEditTime: 2021-08-24 16:03:29
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \vue_car\src\router\index.js
+ */
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
 
 Vue.use(VueRouter)
 
@@ -8,16 +15,16 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    component: Home
+    component: () => import('../views/index'),
+    children: [
+      {
+        path: '/user',
+        name: 'user',
+        component: () => import('../views/user/user.vue')
+      }
+    ]
   },
-  {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
-  }
+
 ]
 
 const router = new VueRouter({
